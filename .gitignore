@@ -1,0 +1,19 @@
+# --- Gradle ---
+.gradle/
+build/
+**/build/
+
+# --- Android Studio / IntelliJ ---
+.idea/
+*.iml
+local.properties   # rutas locales del SDK: NUNCA al repo
+captures/
+
+# --- Sistema ---
+.DS_Store
+
+# --- Kotlin ---
+.kotlin/
+
+# --- Papelera local (no puedo borrar en tu disco; borra esta carpeta tu) ---
+_to_delete/
