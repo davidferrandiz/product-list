@@ -1,106 +1,82 @@
-# =====================================================================
-# libs.versions.toml — VERSION CATALOG (única fuente de verdad de versiones)
-# ---------------------------------------------------------------------
-# Paralelo iOS: es como centralizar TODAS las dependencias de tu
-# Package.swift en un solo sitio. Ningún build.gradle.kts del proyecto
-# escribe un número de versión: todos referencian este fichero como
-# `libs.xxx` (librerías) o `libs.plugins.xxx` (plugins).
-# Verificado el 2026-08-07 contra Maven Central / developer.android.com.
-# =====================================================================
-
 [versions]
-# --- Herramientas de build -------------------------------------------
-agp = "9.3.0"                    # Android Gradle Plugin. Desde AGP 9, Kotlin viene INTEGRADO (built-in): ya no se aplica org.jetbrains.kotlin.android
-kotlin = "2.4.10"                # Se usa para: módulo JVM puro (:domain) y los compiler-plugins de Compose y kotlinx.serialization
-ksp = "2.3.11"                   # Kotlin Symbol Processing (genera código de Room y Hilt). Desde KSP 2.3 su versión va DESACOPLADA de la de Kotlin
+agp = "9.3.0"
+kotlin = "2.4.10"
+ksp = "2.3.11"
 
-# --- AndroidX / Compose ----------------------------------------------
-coreKtx = "1.19.0"               # Extensiones Kotlin de androidx.core
-activityCompose = "1.13.0"       # ComponentActivity + setContent {}
-composeBom = "2026.06.01"        # BOM: fija en bloque las versiones de todo Compose (ui, material3, foundation…) → ninguna lib de Compose lleva versión explícita
-navigationCompose = "2.9.8"      # Navigation 2 estable (Navigation 3 sigue en alpha a fecha de hoy)
-lifecycle = "2.11.0"             # viewmodel-compose + runtime-compose (collectAsStateWithLifecycle)
+coreKtx = "1.19.0"
+activityCompose = "1.13.0"
+composeBom = "2026.06.01"
+navigationCompose = "2.9.8"
+lifecycle = "2.11.0"
 
-# --- Datos ------------------------------------------------------------
-room = "2.8.4"                   # Persistencia SQLite con Flow reactivo
-retrofit = "3.0.0"               # Cliente HTTP declarativo. Su converter de kotlinx.serialization ya es oficial de Square (misma versión)
-okhttp = "5.4.0"                 # Motor HTTP bajo Retrofit + interceptor de logging
-kotlinxSerializationJson = "1.11.0"  # El "Codable" de Kotlin: parseo JSON sin reflexión
-coroutines = "1.11.0"            # kotlinx-coroutines (core / android / test)
-coil = "3.5.0"                   # Carga de imágenes en Compose (Coil 3 = grupo io.coil-kt.coil3)
+room = "2.8.4"
+retrofit = "3.0.0"
+okhttp = "5.4.0"
+kotlinxSerializationJson = "1.11.0"
+coroutines = "1.11.0"
+coil = "3.5.0"
 
-# --- Inyección de dependencias ---------------------------------------
-hilt = "2.60.1"                  # Hilt/Dagger. OJO: Hilt >= 2.59 EXIGE AGP 9
-hiltNavigationCompose = "1.4.0"  # hiltViewModel() dentro de destinos de Navigation
-javaxInject = "1"                # La anotación @Inject estándar (JSR-330), para usarla en :domain sin depender de Hilt
+hilt = "2.60.1"
+hiltNavigationCompose = "1.4.0"
+javaxInject = "1"
 
-# --- Testing ----------------------------------------------------------
-junit = "4.13.2"                 # JUnit 4 (el estándar en Android; JUnit 5 no está soportado oficialmente en instrumentation)
-mockk = "1.14.11"                # Mocking idiomático Kotlin (en vez de Mockito)
-turbine = "1.2.1"                # Aserciones sobre Flow: flow.test { awaitItem()... }
-androidxTestJunit = "1.3.0"      # androidx.test.ext:junit (runner para androidTest)
-espresso = "3.7.0"               # Espresso core (lo usa Compose UI test por debajo)
+junit = "4.13.2"
+mockk = "1.14.11"
+turbine = "1.2.1"
+androidxTestJunit = "1.3.0"
+espresso = "3.7.0"
 
 [libraries]
-# --- AndroidX base ----------------------------------------------------
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 
-# --- Compose (todas SIN versión: la impone el BOM) --------------------
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }              # Preview render (solo debug)
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }  # Iconos (corazón de favorito)
+compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 
-# --- Lifecycle + Navigation ------------------------------------------
 lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
-# --- Red --------------------------------------------------------------
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
-# --- Corrutinas -------------------------------------------------------
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
-# --- Room -------------------------------------------------------------
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }          # Soporte de suspend + Flow en DAOs
-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" } # Se aplica con ksp(...)
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
-# --- Hilt -------------------------------------------------------------
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }  # Se aplica con ksp(...)
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
 
-# --- Imágenes ---------------------------------------------------------
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
-coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }  # En Coil 3 el motor de red va aparte
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 
-# --- Testing ----------------------------------------------------------
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestJunit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }       # versión vía BOM
-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }   # versión vía BOM
+compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }                      # SOLO para :domain (módulo Kotlin puro)
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }       # Compiler plugin de Compose (desde Kotlin 2.0 su versión = versión de Kotlin)
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

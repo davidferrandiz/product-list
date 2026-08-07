@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- =================================================================
-     AndroidManifest de :app — la "ficha de registro" de la app ante
-     el sistema. Nota: el paquete ya NO se declara aquí (va como
-     `namespace` en build.gradle.kts desde AGP 8).
-     ================================================================= -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Sin esto, Retrofit lanza SecurityException al primer request.
-         Es EL descuido clásico que un evaluador detecta en 10 segundos. -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,15 +8,10 @@
         android:label="Mango Store"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
-        <!-- android:name apunta a nuestra Application con @HiltAndroidApp:
-             es el punto donde nace el contenedor de DI.
-             El theme del sistema basta: Compose pinta su propio tema dentro. -->
 
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <!-- exported=true es OBLIGATORIO declararlo explícitamente
-                 (API 31+) en la activity de lanzamiento -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

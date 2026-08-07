@@ -1,8 +1,3 @@
-// =====================================================================
-// :feature:profile — pantalla de PERFIL (usuario /users/8 + nº favoritos)
-// (misma receta que :feature:products; ver comentarios allí)
-// Nota: sin Coil — el perfil no muestra imágenes de producto.
-// =====================================================================
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
@@ -38,6 +33,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

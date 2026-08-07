@@ -1,7 +1,3 @@
-// =====================================================================
-// :feature:favorites — pantalla de FAVORITOS
-// (misma receta que :feature:products; ver comentarios allí)
-// =====================================================================
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
