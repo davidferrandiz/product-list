@@ -5,7 +5,6 @@ import com.davidferrandiz.mangostore.domain.model.Product
 import com.davidferrandiz.mangostore.domain.repository.FavoriteRepository
 import com.davidferrandiz.mangostore.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -20,15 +19,13 @@ class GetProductsUseCase @Inject constructor(
         when (val result = productRepository.getProducts()) {
             is MangoResult.Error -> emit(result)
             is MangoResult.Success -> emitAll(
-                favoriteRepository.observeFavoriteIds()
-                    .distinctUntilChanged()
-                    .map { favoriteIds ->
-                        MangoResult.Success(
-                            result.data.map { product ->
-                                product.copy(isFavorite = product.id in favoriteIds)
-                            }
-                        )
-                    }
+                favoriteRepository.observeFavoriteIds().map { favoriteIds ->
+                    MangoResult.Success(
+                        result.data.map { product ->
+                            product.copy(isFavorite = product.id in favoriteIds)
+                        }
+                    )
+                }
             )
         }
     }

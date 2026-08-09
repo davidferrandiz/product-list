@@ -1,7 +1,9 @@
 package com.davidferrandiz.mangostore.data.di
 
+import com.davidferrandiz.mangostore.data.repository.FavoriteRepositoryImpl
 import com.davidferrandiz.mangostore.data.repository.ProductRepositoryImpl
 import com.davidferrandiz.mangostore.data.repository.UserRepositoryImpl
+import com.davidferrandiz.mangostore.domain.repository.FavoriteRepository
 import com.davidferrandiz.mangostore.domain.repository.ProductRepository
 import com.davidferrandiz.mangostore.domain.repository.UserRepository
 import dagger.Binds
@@ -21,4 +23,8 @@ internal abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindFavoriteRepository(impl: FavoriteRepositoryImpl): FavoriteRepository
 }
