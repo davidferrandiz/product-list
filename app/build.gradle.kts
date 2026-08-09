@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
@@ -50,10 +51,12 @@ dependencies {
 
     implementation(libs.navigation3.runtime)
     implementation(libs.navigation3.ui)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.lifecycle.viewmodel.navigation3)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.coroutines.android)
 

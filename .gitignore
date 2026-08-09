@@ -6,7 +6,7 @@ build/
 # --- Android Studio / IntelliJ ---
 .idea/
 *.iml
-local.properties   # rutas locales del SDK: NUNCA al repo
+local.properties
 captures/
 
 # --- Sistema ---
@@ -15,5 +15,6 @@ captures/
 # --- Kotlin ---
 .kotlin/
 
-# --- Papelera local (no puedo borrar en tu disco; borra esta carpeta tu) ---
+# --- Notas de trabajo, fuera de la entrega ---
+docs/
 _to_delete/

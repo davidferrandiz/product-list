@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="error_no_connection">Sin conexión. Comprueba tu red e inténtalo de nuevo.</string>
-    <string name="error_timeout">La conexión ha tardado demasiado. Inténtalo de nuevo.</string>
-    <string name="error_server">El servidor no responde ahora mismo. Inténtalo más tarde.</string>
-    <string name="error_not_found">No hemos encontrado lo que buscabas.</string>
-    <string name="error_serialization">Hemos recibido una respuesta inesperada.</string>
-    <string name="error_unknown">Algo ha ido mal. Inténtalo de nuevo.</string>
-    <string name="action_retry">Reintentar</string>
+    <string name="app_name">Mango Store</string>
+
+    <string name="error_no_connection">No connection. Check your network and try again.</string>
+    <string name="error_timeout">The connection took too long. Please try again.</string>
+    <string name="error_server">The server is not responding right now. Try again later.</string>
+    <string name="error_not_found">We couldn\'t find what you were looking for.</string>
+    <string name="error_serialization">We received an unexpected response.</string>
+    <string name="error_unknown">Something went wrong. Please try again.</string>
+
+    <string name="action_retry">Try again</string>
+
+    <string name="nav_products">Products</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="product_add_to_favorites">Add to favorites</string>
+    <string name="product_remove_from_favorites">Remove from favorites</string>
+
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty">Browse the catalogue and save what you like.</string>
+
+    <string name="profile_favorites_count">%1$d saved favorites</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_phone">Phone</string>
+    <string name="profile_city">City</string>
 </resources>

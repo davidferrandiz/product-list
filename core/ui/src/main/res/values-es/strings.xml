@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mango Store</string>
+
+    <string name="error_no_connection">Sin conexión. Comprueba tu red e inténtalo de nuevo.</string>
+    <string name="error_timeout">La conexión ha tardado demasiado. Inténtalo de nuevo.</string>
+    <string name="error_server">El servidor no responde ahora mismo. Inténtalo más tarde.</string>
+    <string name="error_not_found">No hemos encontrado lo que buscabas.</string>
+    <string name="error_serialization">Hemos recibido una respuesta inesperada.</string>
+    <string name="error_unknown">Algo ha ido mal. Inténtalo de nuevo.</string>
+
+    <string name="action_retry">Reintentar</string>
+
+    <string name="nav_products">Productos</string>
+    <string name="nav_favorites">Favoritos</string>
+    <string name="nav_profile">Perfil</string>
+
+    <string name="product_add_to_favorites">Añadir a favoritos</string>
+    <string name="product_remove_from_favorites">Quitar de favoritos</string>
+
+    <string name="favorites_empty_title">Aún no tienes favoritos</string>
+    <string name="favorites_empty">Explora el catálogo y guarda lo que te guste.</string>
+
+    <string name="profile_favorites_count">%1$d favoritos guardados</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_phone">Teléfono</string>
+    <string name="profile_city">Ciudad</string>
+</resources>
