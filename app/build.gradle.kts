@@ -48,7 +48,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.lifecycle.runtime.compose)
 
-    implementation(libs.navigation.compose)
+    implementation(libs.navigation3.runtime)
+    implementation(libs.navigation3.ui)
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.hilt.android)

@@ -22,6 +22,8 @@ android {
 }
 
 dependencies {
+    api(project(":domain"))
+
     api(platform(libs.compose.bom))
 
     api(libs.compose.ui)
