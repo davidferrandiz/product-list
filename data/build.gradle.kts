@@ -25,6 +25,10 @@ android {
     lint {
         lintConfig = file("lint.xml")
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -47,5 +51,6 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
     testImplementation(libs.coroutines.test)
 }
