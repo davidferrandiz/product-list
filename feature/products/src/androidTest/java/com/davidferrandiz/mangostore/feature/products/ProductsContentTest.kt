@@ -113,6 +113,6 @@ private fun product(id: Int, title: String, isFavorite: Boolean) = Product(
     price = 9.99,
     description = "Description $id",
     category = "category",
-    imageUrl = "https://example.com/$id.png",
+    imageUrl = "",
     isFavorite = isFavorite,
 )
