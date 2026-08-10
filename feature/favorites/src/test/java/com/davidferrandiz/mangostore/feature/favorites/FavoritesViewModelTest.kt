@@ -11,6 +11,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -87,6 +88,7 @@ class FavoritesViewModelTest {
         val favorite = product(id = 1, isFavorite = true)
 
         viewModel().onRemoveFavorite(favorite)
+        advanceUntilIdle()
 
         coVerify(exactly = 1) { toggleFavorite(favorite) }
     }
