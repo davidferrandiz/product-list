@@ -1,10 +1,10 @@
 package com.davidferrandiz.mangostore.domain.usecase
 
 import app.cash.turbine.test
+import com.davidferrandiz.mangostore.core.testing.FakeFavoriteRepository
+import com.davidferrandiz.mangostore.core.testing.product
 import com.davidferrandiz.mangostore.domain.common.MangoResult
 import com.davidferrandiz.mangostore.domain.error.AppError
-import com.davidferrandiz.mangostore.domain.fake.FakeFavoriteRepository
-import com.davidferrandiz.mangostore.domain.fake.product
 import com.davidferrandiz.mangostore.domain.model.Product
 import com.davidferrandiz.mangostore.domain.repository.ProductRepository
 import io.mockk.coEvery

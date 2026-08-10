@@ -1,8 +1,8 @@
 package com.davidferrandiz.mangostore.domain.usecase
 
 import app.cash.turbine.test
-import com.davidferrandiz.mangostore.domain.fake.FakeFavoriteRepository
-import com.davidferrandiz.mangostore.domain.fake.product
+import com.davidferrandiz.mangostore.core.testing.FakeFavoriteRepository
+import com.davidferrandiz.mangostore.core.testing.product
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

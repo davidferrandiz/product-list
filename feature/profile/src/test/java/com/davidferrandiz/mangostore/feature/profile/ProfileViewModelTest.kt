@@ -2,10 +2,11 @@ package com.davidferrandiz.mangostore.feature.profile
 
 import app.cash.turbine.ReceiveTurbine
 import app.cash.turbine.test
+import com.davidferrandiz.mangostore.core.testing.MainDispatcherRule
+import com.davidferrandiz.mangostore.core.testing.userProfile
 import com.davidferrandiz.mangostore.core.ui.R
 import com.davidferrandiz.mangostore.domain.common.MangoResult
 import com.davidferrandiz.mangostore.domain.error.AppError
-import com.davidferrandiz.mangostore.domain.model.UserProfile
 import com.davidferrandiz.mangostore.domain.usecase.GetUserProfileUseCase
 import com.davidferrandiz.mangostore.domain.usecase.ObserveFavoriteCountUseCase
 import io.mockk.coEvery
@@ -29,6 +30,8 @@ class ProfileViewModelTest {
     private val observeFavoriteCount: ObserveFavoriteCountUseCase = mockk()
 
     private val favoriteCount = MutableStateFlow(0)
+
+    private val william = userProfile()
 
     @Test
     fun `emits the profile together with the current favorite count`() = runTest {
@@ -125,11 +128,3 @@ private suspend fun ReceiveTurbine<ProfileUiState>.awaitContent(): ProfileUiStat
 private fun explodingFlow(): Flow<Int> = flow {
     throw IllegalStateException("something nobody predicted")
 }
-
-private val william = UserProfile(
-    id = 8,
-    displayName = "william hopkins",
-    email = "william@gmail.com",
-    phone = "1-478-001-0890",
-    city = "mesa",
-)

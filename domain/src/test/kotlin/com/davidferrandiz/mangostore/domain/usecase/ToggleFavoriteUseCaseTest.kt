@@ -1,6 +1,6 @@
 package com.davidferrandiz.mangostore.domain.usecase
 
-import com.davidferrandiz.mangostore.domain.fake.product
+import com.davidferrandiz.mangostore.core.testing.product
 import com.davidferrandiz.mangostore.domain.repository.FavoriteRepository
 import io.mockk.coVerify
 import io.mockk.mockk

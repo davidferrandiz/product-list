@@ -1,4 +1,4 @@
-package com.davidferrandiz.mangostore.domain.fake
+package com.davidferrandiz.mangostore.core.testing
 
 import com.davidferrandiz.mangostore.domain.model.Product
 import com.davidferrandiz.mangostore.domain.repository.FavoriteRepository

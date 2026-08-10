@@ -1,6 +1,8 @@
 package com.davidferrandiz.mangostore.feature.favorites
 
 import app.cash.turbine.test
+import com.davidferrandiz.mangostore.core.testing.MainDispatcherRule
+import com.davidferrandiz.mangostore.core.testing.product
 import com.davidferrandiz.mangostore.core.ui.R
 import com.davidferrandiz.mangostore.domain.model.Product
 import com.davidferrandiz.mangostore.domain.usecase.ObserveFavoritesUseCase
@@ -101,13 +103,3 @@ class FavoritesViewModelTest {
 private fun explodingFlow(): Flow<List<Product>> = flow {
     throw IllegalStateException("something nobody predicted")
 }
-
-private fun product(id: Int, isFavorite: Boolean = true) = Product(
-    id = id,
-    title = "Product $id",
-    price = 9.99,
-    description = "Description $id",
-    category = "category",
-    imageUrl = "https://example.com/$id.png",
-    isFavorite = isFavorite,
-)

@@ -16,8 +16,10 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.coroutines.core)
-    implementation(libs.javax.inject)
+    api(project(":domain"))
 
-    testImplementation(project(":core:testing"))
+    api(libs.junit)
+    api(libs.mockk)
+    api(libs.turbine)
+    api(libs.coroutines.test)
 }

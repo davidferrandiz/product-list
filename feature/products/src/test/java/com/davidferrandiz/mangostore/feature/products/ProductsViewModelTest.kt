@@ -1,6 +1,8 @@
 package com.davidferrandiz.mangostore.feature.products
 
 import app.cash.turbine.test
+import com.davidferrandiz.mangostore.core.testing.MainDispatcherRule
+import com.davidferrandiz.mangostore.core.testing.product
 import com.davidferrandiz.mangostore.core.ui.R
 import com.davidferrandiz.mangostore.domain.common.MangoResult
 import com.davidferrandiz.mangostore.domain.error.AppError
@@ -120,11 +122,3 @@ private fun explodingFlow(): Flow<MangoResult<List<Product>>> = flow {
     throw IllegalStateException("something nobody predicted")
 }
 
-private fun product(id: Int) = Product(
-    id = id,
-    title = "Product $id",
-    price = 9.99,
-    description = "Description $id",
-    category = "category",
-    imageUrl = "https://example.com/$id.png",
-)
