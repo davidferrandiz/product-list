@@ -21,12 +21,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,6 +38,8 @@ import coil3.compose.AsyncImage
 import com.davidferrandiz.mangostore.core.ui.R
 import com.davidferrandiz.mangostore.core.ui.theme.MangoTheme
 import com.davidferrandiz.mangostore.domain.model.Product
+import java.text.NumberFormat
+import java.util.Currency
 
 @Composable
 fun ProductCard(
@@ -125,7 +129,16 @@ fun ProductCard(
     }
 }
 
-private fun Product.formattedPrice(): String = "%.2f €".format(price)
+@Composable
+private fun Product.formattedPrice(): String {
+    val locale = LocalConfiguration.current.locales[0]
+    val formatter = remember(locale) {
+        NumberFormat.getCurrencyInstance(locale).apply {
+            currency = Currency.getInstance("USD")
+        }
+    }
+    return formatter.format(price)
+}
 
 @Preview
 @Composable

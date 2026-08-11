@@ -23,7 +23,7 @@ internal suspend fun <T> safeApiCall(call: suspend () -> T): MangoResult<T> =
         Log.w(TAG, "No connection", e)
         MangoResult.Error(AppError.NoConnection)
     } catch (e: HttpException) {
-        Log.w(TAG, "HTTP ${e.code()} en ${e.response()?.raw()?.request?.url}", e)
+        Log.w(TAG, "HTTP ${e.code()} at ${e.response()?.raw()?.request?.url}", e)
         MangoResult.Error(AppError.Http(e.code()))
     } catch (e: SerializationException) {
         Log.w(TAG, "Parsing error", e)

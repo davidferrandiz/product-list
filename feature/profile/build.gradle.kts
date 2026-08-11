@@ -39,9 +39,6 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.lifecycle.viewmodel.compose)
 
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network.okhttp)
-
     testImplementation(project(":core:testing"))
 
     androidTestImplementation(platform(libs.compose.bom))

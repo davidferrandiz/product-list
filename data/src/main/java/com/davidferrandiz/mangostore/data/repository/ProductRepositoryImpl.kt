@@ -7,7 +7,6 @@ import com.davidferrandiz.mangostore.domain.common.map
 import com.davidferrandiz.mangostore.domain.model.Product
 import com.davidferrandiz.mangostore.domain.repository.ProductRepository
 import javax.inject.Inject
-import kotlin.collections.map
 
 internal class ProductRepositoryImpl @Inject constructor(
     private val remoteDataSource: ProductRemoteDataSource,

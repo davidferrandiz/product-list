@@ -12,7 +12,7 @@ Three tabs, reachable from a bottom navigation bar:
 - **Favorites** — everything you have saved, most recent first. You can remove items from here too.
 - **Profile** — the current user's details plus a live count of saved favorites.
 
-Every screen handles the three states explicitly: loading, error (with a retry action) and content. Favorites survive closing the app, because they live in a local database rather than in memory.
+Every screen handles the three states explicitly: loading, error and content, with a retry action wherever retrying can change the outcome. Favorites survive closing the app, because they live in a local database rather than in memory.
 
 The app ships in English and Spanish, and follows the system's light or dark theme.
 
@@ -99,6 +99,7 @@ Deliberately not tested: pure delegations, field-to-field mappers, and anything 
 - No offline cache for the catalogue: without a connection, the product list shows an error rather than stale data. Favorites remain available, since they are stored locally.
 - No pagination — the API returns the whole catalogue in a single call.
 - The profile is fixed to user `8`, because the API has no authentication.
+- Prices are formatted in the user's locale but always as US dollars, which is the currency the API actually returns.
 
 ## Built with
 

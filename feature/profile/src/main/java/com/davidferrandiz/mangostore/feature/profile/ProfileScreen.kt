@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -157,7 +158,11 @@ private fun FavoriteCountCard(favoriteCount: Int) {
                 tint = MaterialTheme.colorScheme.onSecondaryContainer,
             )
             Text(
-                text = stringResource(R.string.profile_favorites_count, favoriteCount),
+                text = pluralStringResource(
+                    R.plurals.profile_favorites_count,
+                    favoriteCount,
+                    favoriteCount,
+                ),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
             )

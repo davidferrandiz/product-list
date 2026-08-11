@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.core.app.ApplicationProvider
@@ -35,7 +36,7 @@ class ProductsContentTest {
     fun showsTheLoadingIndicatorWhileLoading() {
         setContent(ProductsUiState.Loading)
 
-        composeRule.onNodeWithContentDescription(LOADING_INDICATOR_TAG).assertIsDisplayed()
+        composeRule.onNodeWithTag(LOADING_INDICATOR_TAG).assertIsDisplayed()
     }
 
     @Test

@@ -64,7 +64,11 @@ fun MangoApp() {
                 TopLevelDestination.entries.forEach { destination ->
                     NavigationBarItem(
                         selected = destination == currentDestination,
-                        onClick = { backStack.switchTopLevel(destination.key) },
+                        onClick = {
+                            if (destination != currentDestination) {
+                                backStack.switchTopLevel(destination.key)
+                            }
+                        },
                         icon = {
                             Icon(
                                 imageVector = destination.icon,

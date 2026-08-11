@@ -29,7 +29,7 @@ import com.davidferrandiz.mangostore.core.ui.theme.MangoTheme
 @Composable
 fun ErrorContent(
     @StringRes messageRes: Int,
-    onRetry: () -> Unit,
+    onRetry: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -57,11 +57,13 @@ fun ErrorContent(
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
         )
-        Button(
-            onClick = onRetry,
-            shape = RoundedCornerShape(12.dp),
-        ) {
-            Text(stringResource(R.string.action_retry))
+        onRetry?.let { retry ->
+            Button(
+                onClick = retry,
+                shape = RoundedCornerShape(12.dp),
+            ) {
+                Text(stringResource(R.string.action_retry))
+            }
         }
     }
 }

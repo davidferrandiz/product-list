@@ -21,7 +21,10 @@
     <string name="favorites_empty_title">No favorites yet</string>
     <string name="favorites_empty">Browse the catalogue and save what you like.</string>
 
-    <string name="profile_favorites_count">%1$d saved favorites</string>
+    <plurals name="profile_favorites_count">
+        <item quantity="one">%1$d saved favorite</item>
+        <item quantity="other">%1$d saved favorites</item>
+    </plurals>
     <string name="profile_email">Email</string>
     <string name="profile_phone">Phone</string>
     <string name="profile_city">City</string>

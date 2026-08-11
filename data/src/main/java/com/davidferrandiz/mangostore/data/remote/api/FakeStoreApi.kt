@@ -10,9 +10,6 @@ internal interface FakeStoreApi {
     @GET("products")
     suspend fun getProducts(): List<ProductApiResponse>
 
-    @GET("products/{id}")
-    suspend fun getProducts(@Path("id") id: Int): ProductApiResponse
-
     @GET("users/{id}")
     suspend fun getUser(@Path("id") id: Int): UserApiResponse
 }

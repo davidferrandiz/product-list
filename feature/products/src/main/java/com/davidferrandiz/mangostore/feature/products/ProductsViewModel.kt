@@ -31,7 +31,7 @@ internal class ProductsViewModel @Inject constructor(
     private val toggleFavorite: ToggleFavoriteUseCase,
 ) : ViewModel() {
 
-    private val retryTrigger = MutableSharedFlow<Unit>()
+    private val retryTrigger = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<ProductsUiState> = retryTrigger
@@ -41,7 +41,7 @@ internal class ProductsViewModel @Inject constructor(
                 .map { result -> result.toUiState() }
                 .onStart { emit(ProductsUiState.Loading) }
                 .catch { throwable ->
-                    Log.e(TAG, "Fallo inesperado en el flujo de productos", throwable)
+                    Log.e(TAG, "Unexpected failure in the products stream", throwable)
                     emit(ProductsUiState.Error(R.string.error_unknown))
                 }
         }

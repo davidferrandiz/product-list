@@ -47,7 +47,6 @@ internal fun FavoritesContent(
 
         is FavoritesUiState.Error -> ErrorContent(
             messageRes = uiState.messageRes,
-            onRetry = {},
             modifier = modifier,
         )
 
