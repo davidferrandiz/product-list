@@ -119,7 +119,7 @@ This uses Google's Compose Preview Screenshot Testing plugin, which is still in 
 - No offline cache for the catalogue: without a connection, the product list shows an error rather than stale data. Favorites remain available, since they are stored locally.
 - No pagination — the API returns the whole catalogue in a single call.
 - The profile is fixed to user `8`, because the API has no authentication.
-- Prices are formatted in the user's locale but always as US dollars, which is the currency the API actually returns.
+- Prices are formatted using the device locale, but the currency is fixed to USD. The API returns a bare number with no currency field, so that is an assumption on our side rather than something the response tells us. In production the currency would be part of the model and come from the backend.
 
 ## Built with
 
