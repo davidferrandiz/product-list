@@ -79,7 +79,7 @@ The project is split into eight Gradle modules. The rule that governs all of the
 
 ## Tests
 
-**61 tests: 40 unit tests and 21 instrumented.**
+**61 tests — 40 unit and 21 instrumented — plus 7 Compose snapshot tests.**
 
 The guiding rule is that **a test should protect a decision, not mirror an implementation.** A use case whose whole body is `return repository.getThing()` has no decision in it, so a test there would only restate the code and would need updating every time the signature changes, without ever catching anything.
 
@@ -93,6 +93,26 @@ What the suite protects, in order of importance:
 - The favorites counter on the profile updates without reloading the profile
 
 Deliberately not tested: pure delegations, field-to-field mappers, and anything that would require weakening the design to make it reachable from a test.
+
+### Snapshot tests
+
+Seven snapshot tests render the shared components and compare them against reference images kept in the repository, so a change in padding, colour or text size shows up as a visual diff instead of going unnoticed. They cover the product card in four variants — plain, saved, with a title long enough to be truncated, and in dark theme — plus the empty and error states.
+
+The loading spinner is deliberately left out: it is animated, and a snapshot of a moving target is a test that fails at random.
+
+These run on the JVM using the same renderer as Android Studio previews, so no emulator is involved:
+
+```bash
+# record the reference images (first run, or after an intended visual change)
+./gradlew :core:ui:updateDebugScreenshotTest
+
+# compare the current UI against those references
+./gradlew :core:ui:validateDebugScreenshotTest
+```
+
+The visual diff report is written to `core/ui/build/reports/screenshotTest/preview/debug/index.html`.
+
+This uses Google's Compose Preview Screenshot Testing plugin, which is still in alpha — at the time of writing it is the only screenshot testing tool that supports AGP 9 on JDK 17, since both Paparazzi and Roborazzi currently require JDK 21.
 
 ## Known limitations
 
