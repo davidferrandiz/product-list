@@ -8,6 +8,7 @@
     <string name="error_not_found">We couldn\'t find what you were looking for.</string>
     <string name="error_serialization">We received an unexpected response.</string>
     <string name="error_unknown">Something went wrong. Please try again.</string>
+    <string name="error_favorite_update_failed">Your favorites couldn\'t be updated. Please try again.</string>
 
     <string name="action_retry">Try again</string>
 

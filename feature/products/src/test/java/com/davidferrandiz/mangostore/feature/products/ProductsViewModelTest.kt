@@ -9,6 +9,7 @@ import com.davidferrandiz.mangostore.domain.error.AppError
 import com.davidferrandiz.mangostore.domain.model.Product
 import com.davidferrandiz.mangostore.domain.usecase.GetProductsUseCase
 import com.davidferrandiz.mangostore.domain.usecase.ToggleFavoriteUseCase
+import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
@@ -113,6 +114,20 @@ class ProductsViewModelTest {
         advanceUntilIdle()
 
         coVerify(exactly = 1) { toggleFavorite(favorite) }
+    }
+
+    @Test
+    fun `a failed toggle sends a message instead of crashing`() = runTest {
+        every { getProducts() } returns flowOf(MangoResult.Success(catalog))
+        coEvery { toggleFavorite(any()) } throws IllegalStateException("disk full")
+
+        val viewModel = viewModel()
+
+        viewModel.messages.test {
+            viewModel.onToggleFavorite(product(id = 1))
+
+            assertEquals(R.string.error_favorite_update_failed, awaitItem())
+        }
     }
 
     private fun viewModel() = ProductsViewModel(getProducts, toggleFavorite)
