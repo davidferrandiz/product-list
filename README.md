@@ -12,7 +12,7 @@ Three tabs, reachable from a bottom navigation bar:
 - **Favorites** — everything you have saved, most recent first. You can remove items from here too.
 - **Profile** — the current user's details plus a live count of saved favorites.
 
-Every screen handles the three states explicitly: loading, error and content, with a retry action wherever retrying can change the outcome. Favorites survive closing the app, because they live in a local database rather than in memory.
+Every screen handles the three states explicitly: loading, error (with a retry action) and content. Favorites survive closing the app, because they live in a local database rather than in memory.
 
 The app ships in English and Spanish, and follows the system's light or dark theme.
 
@@ -79,7 +79,7 @@ The project is split into eight Gradle modules. The rule that governs all of the
 
 ## Tests
 
-**61 tests — 40 unit and 21 instrumented — plus 7 Compose snapshot tests.**
+**64 tests — 43 unit and 21 instrumented — plus 7 Compose snapshot tests.**
 
 The guiding rule is that **a test should protect a decision, not mirror an implementation.** A use case whose whole body is `return repository.getThing()` has no decision in it, so a test there would only restate the code and would need updating every time the signature changes, without ever catching anything.
 
@@ -91,6 +91,7 @@ What the suite protects, in order of importance:
 - An unexpected failure shows a generic error **without breaking the retry button**
 - An empty list produces an "empty" state rather than an empty list on screen
 - The favorites counter on the profile updates without reloading the profile
+- A failed favorite write surfaces a message instead of crashing, and the network call runs on the dispatcher it was given
 
 Deliberately not tested: pure delegations, field-to-field mappers, and anything that would require weakening the design to make it reachable from a test.
 

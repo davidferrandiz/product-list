@@ -87,6 +87,25 @@ class FavoritesViewModelTest {
     }
 
     @Test
+    fun `retrying after an error recreates the stream`() = runTest {
+        every { observeFavorites() } returnsMany listOf(explodingFlow(), favorites)
+
+        val viewModel = viewModel()
+
+        viewModel.uiState.test {
+            assertEquals(FavoritesUiState.Loading, awaitItem())
+            assertEquals(FavoritesUiState.Error(R.string.error_unknown), awaitItem())
+
+            viewModel.onRetry()
+
+            assertEquals(FavoritesUiState.Loading, awaitItem())
+            assertEquals(FavoritesUiState.Content(favorites.value), awaitItem())
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
     fun `delegates the removal to the toggle use case`() = runTest {
         every { observeFavorites() } returns favorites
         val favorite = product(id = 1, isFavorite = true)

@@ -42,6 +42,7 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
         FavoritesContent(
             uiState = uiState,
             onRemoveFavorite = viewModel::onRemoveFavorite,
+            onRetry = viewModel::onRetry,
         )
         SnackbarHost(
             hostState = snackbarHostState,
@@ -54,6 +55,7 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
 internal fun FavoritesContent(
     uiState: FavoritesUiState,
     onRemoveFavorite: (Product) -> Unit,
+    onRetry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     when (uiState) {
@@ -67,6 +69,7 @@ internal fun FavoritesContent(
 
         is FavoritesUiState.Error -> ErrorContent(
             messageRes = uiState.messageRes,
+            onRetry = onRetry,
             modifier = modifier,
         )
 

@@ -74,12 +74,14 @@ class FavoritesContentTest {
     private fun setContent(
         uiState: FavoritesUiState,
         onRemoveFavorite: (Product) -> Unit = {},
+        onRetry: () -> Unit = {},
     ) {
         composeRule.setContent {
             MangoTheme {
                 FavoritesContent(
                     uiState = uiState,
                     onRemoveFavorite = onRemoveFavorite,
+                    onRetry = onRetry,
                 )
             }
         }
